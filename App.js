@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MQTTProvider } from './MQTTContext';
+import ConnectionScreen from './screens/ConnectionScreen';
+import SubscribeScreen from './screens/SubscribeScreen';
+import PublishScreen from './screens/PublishScreen';
+import { View } from 'react-native';
 
-export default function App() {
+const Tab = createBottomTabNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <MQTTProvider>
+          <Tab.Navigator>
+            <Tab.Screen name="Connect" component={ConnectionScreen} />
+            <Tab.Screen name="Subscribe" component={SubscribeScreen} />
+            <Tab.Screen name="Publish" component={PublishScreen} />
+          </Tab.Navigator>
+      </MQTTProvider>
+    </NavigationContainer >
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
