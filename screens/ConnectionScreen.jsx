@@ -11,12 +11,16 @@ const ConnectionScreen = () => {
   const [brokerUrlInput, setBrokerUrlInput] = useState('');
   const [portInput, setPortInput] = useState('');
   const [clientId, setClientId] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleConnect = () => {
-    connectToBroker(brokerUrlInput, clientId, portInput);
+    connectToBroker(brokerUrlInput, clientId, portInput, username, password);
     setBrokerUrlInput('');
     setClientId('');
     setPortInput('');
+    setUsername('');
+    setPassword('');
   };
 
   const handleDisconnect = () => {
@@ -47,6 +51,18 @@ const ConnectionScreen = () => {
             value={portInput}
             onChangeText={setPortInput}
             keyboardType='numeric'
+            style={styles.textInputStyle}
+          />
+          <TextInput
+            placeholder="Username (optional)"
+            value={username}
+            onChangeText={setUsername}
+            style={styles.textInputStyle}
+          />
+          <TextInput
+            placeholder="Password (optional)"
+            value={password}
+            onChangeText={setPassword}
             style={styles.textInputStyle}
           />
           <Button title="Connect" onPress={handleConnect} />

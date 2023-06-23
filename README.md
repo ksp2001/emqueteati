@@ -1,21 +1,20 @@
 ### EMQUETEATI 
 
-A cross-platform project to facilitate broker connections to publish and receive messages through the MQTT protocol.
+A cross-platform project to facilitate broker connections to publish and receive messages through the MQTT protocol, predominantly used for IoT applications, to send and receive data from sensors and other devices.
 
 Current features:
-- Broker connection/disconnection
+- Broker connection/disconnection (including authenticated connections)
 - Publish messages
-- Subscribe to topics
+- Subscribe/unsubscribe to topics
+- View topic hierarchy (e.g. factory > machine > sensor (topic name))
 - Receive messages
 
-Future features/ideas:
-- [IMPORTANT] Broker authentication (username/password support for private connections)
-- [IMPORTANT] Allow unsubscribing from topics
+Future features/fixes:
 - Explore allowing TCP ports alongside websockets for lower latency
     - The current, well supported  `paho-mqtt` library does not support this in React Native without Node, however, the overhead added by websockets is not large enough for the scope of this project
     for this to be an immediate concern
 - Explore adding local storage to persist connection information
-- Explore adding structuring to segregate topics (for instance, sensors can be under FactoryName > MachineName > SensorName)
+- Keyboard dismiss on button press
 
 #### Technologies used
 

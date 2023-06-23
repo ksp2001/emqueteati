@@ -6,6 +6,7 @@ import ConnectionScreen from './screens/ConnectionScreen';
 import SubscribeScreen from './screens/SubscribeScreen';
 import PublishScreen from './screens/PublishScreen';
 import { View } from 'react-native';
+import HierarchyScreen from './screens/HierarchyScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ const App = () => {
             <Tab.Screen name="Connect" component={ConnectionScreen} />
             <Tab.Screen name="Subscribe" component={SubscribeScreen} />
             <Tab.Screen name="Publish" component={PublishScreen} />
+            <Tab.Screen name="Hierarchy" component={HierarchyScreen} />
           </Tab.Navigator>
       </MQTTProvider>
     </NavigationContainer >
