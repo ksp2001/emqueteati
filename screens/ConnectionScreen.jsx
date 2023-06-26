@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, TouchableHighlight, Keyboard } from 'react-native';
 import { MQTTContext } from '../MQTTContext';
 import { Text } from 'react-native';
 import styles from '../style';
@@ -21,6 +21,7 @@ const ConnectionScreen = () => {
     setPortInput('');
     setUsername('');
     setPassword('');
+    Keyboard.dismiss();
   };
 
   const handleDisconnect = () => {
@@ -65,7 +66,7 @@ const ConnectionScreen = () => {
             onChangeText={setPassword}
             style={styles.textInputStyle}
           />
-          <Button title="Connect" onPress={handleConnect} />
+          <TouchableHighlight onPress={handleConnect}><Text style={{fontSize: 18, color: '#007AFF'}}>Connect</Text></TouchableHighlight>
         </>
       }
     </View>

@@ -14,7 +14,6 @@ Future features/fixes:
     - The current, well supported  `paho-mqtt` library does not support this in React Native without Node, however, the overhead added by websockets is not large enough for the scope of this project
     for this to be an immediate concern
 - Explore adding local storage to persist connection information
-- Keyboard dismiss on button press
 
 #### Technologies used
 

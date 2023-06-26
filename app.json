@@ -18,13 +18,20 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.emqueteati.app",
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7eefee06-efe9-4f4f-a13a-def453f5e0fa"
+      }
     }
   }
 }

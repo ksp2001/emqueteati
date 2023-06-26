@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { View, TextInput, Button, FlatList, Text, TouchableHighlight } from 'react-native';
+import { View, TextInput, Button, FlatList, Text, TouchableHighlight, Keyboard } from 'react-native';
 import { MQTTContext } from '../MQTTContext';
 import styles from '../style';
 
@@ -10,15 +10,19 @@ const SubscribeScreen = () => {
     const [machine, setMachine] = useState('');
     const [sensor, setSensor] = useState('');
     const [messages, setMessages] = useState([]);
+    const [error, setError] = useState('');
 
     const handleSubscribe = () => {
+        Keyboard.dismiss();
         if (mqttClient) {
+            if (topic === '' || factory === '' || sensor === '') { setError('Please enter all required fields (establishment, sensor, topic)'); return; }
             mqttClient.subscribe(topic);
             saveTopic(factory, machine, sensor, topic);
             setTopic('');
             setFactory('');
             setMachine('');
             setSensor('');
+            setError('');
         }
     };
 
@@ -66,7 +70,7 @@ const SubscribeScreen = () => {
             {mqttClient && mqttClient.isConnected() ?
                 <>
                     <TextInput
-                        placeholder="Establishment Name (home/factory)"
+                        placeholder="Establishment Name (e.g. home/factory)*"
                         value={factory}
                         onChangeText={setFactory}
                         style={styles.textInputStyle}
@@ -78,25 +82,26 @@ const SubscribeScreen = () => {
                         style={styles.textInputStyle}
                     />
                     <TextInput
-                        placeholder="Sensor Name"
+                        placeholder="Sensor Name*"
                         value={sensor}
                         onChangeText={setSensor}
                         style={styles.textInputStyle}
                     />
                     <TextInput
-                        placeholder="Topic"
+                        placeholder="Topic*"
                         value={topic}
                         onChangeText={setTopic}
                         style={styles.textInputStyle}
                     />
-                    <Button title="Subscribe" onPress={handleSubscribe} />
+                    <TouchableHighlight onPress={handleSubscribe}><Text style={{ fontSize: 18, color: '#007AFF' }}>Subscribe</Text></TouchableHighlight>
+                    {error !== '' && <Text style={{ color: 'grey', fontSize: 12 }}>{error}</Text>}
                     {topics.map((subsTopic) => (
                         <View key={subsTopic.topic} style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 10 }}>
                             <Text>{subsTopic.topic}</Text>
-                            <TouchableHighlight onPress={() => handleUnsubscribe(subsTopic.topic)} titleStyle={{ fontSize: 10 }}><Text style={{ fontSize: 10, color: '#2196F3' }}>Unsubscribe</Text></TouchableHighlight>
+                            <TouchableHighlight onPress={() => handleUnsubscribe(subsTopic.topic)} titleStyle={{ fontSize: 10 }}><Text style={{ fontSize: 12, color: '#007AFF' }}>Unsubscribe</Text></TouchableHighlight>
                         </View>
                     ))}
-                    <Text style={{ marginTop: 16, fontSize: 16, fontWeight: '800' }}>Messages:</Text>
+                    <Text style={{ marginTop: 16, fontSize: 16, fontWeight: '600' }}>Messages:</Text>
                     <FlatList
                         data={messages}
                         renderItem={({ item }) => <Text>{renderItem(item)}</Text>}
