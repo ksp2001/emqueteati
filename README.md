@@ -21,4 +21,6 @@ React Native, Expo, paho-mqtt
 
 #### How to run
 
-Currently not available to download on stores. To test, clone the repository and run `npm install` and `npm run start` in the root directory, and run on a simulator or device using the Expo app.
+Available to down on PlayStore [here](https://play.google.com/store/apps/details?id=com.emqueteati.app).
+
+To test, clone the repository and run `npm install` and `npm run start` in the root directory, and run on a simulator or device using the Expo app.
