@@ -21,6 +21,6 @@ React Native, Expo, paho-mqtt
 
 #### How to run
 
-Available to down on PlayStore [here](https://play.google.com/store/apps/details?id=com.emqueteati.app).
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200">](https://play.google.com/store/apps/details?id=com.emqueteati.app)
 
 To test, clone the repository and run `npm install` and `npm run start` in the root directory, and run on a simulator or device using the Expo app.
